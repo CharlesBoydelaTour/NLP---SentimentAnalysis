@@ -8,11 +8,9 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
-Charles Boy de la Tour - Gabriel Drai - Zakariae El Asri `</div>`
+Charles Boy de la Tour - Gabriel Drai - Zakariae El Asri
 
 ---
 
@@ -33,21 +31,25 @@ sentences.
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgement)
 
-## About `<a name = "about"></a>`
+## About
 
-The goal of this exercise is to implement a classifier to predict aspect-based polarities ofopinions in
-sentences.
+The goal of this exercise is to implement a classifier to predict aspect-based polarities of opinions in sentences.
 
-The classifier assigns a polarity label to every triple <aspect_category, aspect_term,
-sentence>.
+The classifier assigns a polarity label to every triple:
+
+- aspect_category,
+- aspect_term,
+- sentence.
 
 The polarity labels are: **positive**, **negative** and **neutral.**
 
-## Implementation `<a name = "getting_started"></a>`
+![](image/README/1647253512618.png)
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+## Implementation
 
-### Prerequisites
+Our implementation is based on the pre-trained language models [BERT](https://arxiv.org/abs/1810.04805), developed by Google in 2018. We use this model from [Hugging Face](https://huggingface.co/) 🤗. BERT is a language representation model based on transformers.
+
+### Data Processing
 
 What things you need to install the software and how to install them.
 
@@ -63,7 +65,7 @@ The devs accuracy for 5 runs are:
 | ----- | ----- | ----- | ----- | :---: |
 | 84.57 | 85.64 | 83.24 | 84.57 | 85.64 |
 
-## 🔧 Running the tests `<a name = "tests"></a>`
+## 🔧 Running the tests
 
 Explain how to run the automated tests for this system.
 
@@ -83,20 +85,12 @@ Explain what these tests test and why
 Give an example
 ```
 
-## ⛏️ Built Using `<a name = "built_using"></a>`
+## ✍️ Authors
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [@CharlesBoydelaTour](https://github.com/CharlesBoydelaTour)
+- [@Gabrielchapo](https://github.com/Gabrielchapo)
+- [@elasriz](https://github.com/elasriz)
 
-## ✍️ Authors `<a name = "authors"></a>`
+## 🎉 Acknowledgements
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-- 
-
-## 🎉 Acknowledgements `<a name = "acknowledgement"></a>`
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+- Devlin, Jacob, et al. "Bert: Pre-training of deep bidirectional transformers for language understanding." *arXiv preprint arXiv:1810.04805* (2018).
