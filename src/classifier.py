@@ -16,26 +16,28 @@ import transformers
 
 class BertClassifier(nn.Module):
 
-    def __init__(self, dropout=0.2):
+    def __init__(self, dropout=0.5):
 
         super(BertClassifier, self).__init__()
 
         self.bert = BertModel.from_pretrained('bert-base-uncased')
         self.dropout = nn.Dropout(dropout)
-        self.linear = nn.Linear(768, 3)
+        self.linear1 = nn.Linear(768, 768)
+        self.linear2 = nn.Linear(768, 3)
         self.relu = nn.ReLU()
 
     def forward(self, input_id, mask):
 
         _, pooled_output = self.bert(input_ids= input_id, attention_mask=mask,return_dict=False)
         dropout_output = self.dropout(pooled_output)
-        linear_output = self.linear(dropout_output)
-        final_layer = self.relu(linear_output)
+        linear_output = self.linear1(dropout_output)
+        act_output = self.relu(linear_output)
+        final_layer = self.linear2(act_output)
 
         return final_layer
     
 class Classifier:
-    def __init__(self, batch_size=32, max_seq_length=256, lr=5e-5, eps=1e-8, epochs=1, warmup_steps=0):
+    def __init__(self, batch_size=32, max_seq_length=256, lr=1e-5, eps=1e-8, epochs=5, warmup_steps=0):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.batch_size = batch_size
         self.max_seq_length = max_seq_length
@@ -47,12 +49,12 @@ class Classifier:
         self.criterion = CrossEntropyLoss()
         self.train_losses = []
         self.model = BertClassifier().to(self.device)
-        self.optimizer = torch.optim.AdamW(self.model.parameters(), lr = 1e-5, eps = 1e-8)
+        self.optimizer = torch.optim.AdamW(self.model.parameters(), lr = self.lr, eps = self.eps)
         
     def data_loading_fn(self, datafile):
             data = pd.read_csv(datafile, sep='\t', names = ["polarity_label","aspect_category", "target_term", "character_offsets", "sentence"])
             data["aspect_category"] = data["aspect_category"].str.replace("#", " ") 
-            data["concat"] = data["aspect_category"] + " " + data["target_term"] + " " + data["sentence"]
+            data["concat"] = data["aspect_category"] + "[SEP] " + data["target_term"] + "[SEP] " + data["sentence"]
             label, corpus = data["polarity_label"].to_list(), data["concat"].to_list()
             classes = {'negative':0,'positive':1,'neutral':2}
             label = [classes[y] for y in label]
@@ -60,7 +62,6 @@ class Classifier:
             add_special_tokens=True,
             return_attention_mask=True,
             padding='longest',
-            #max_length=self.max_seq_length,
             return_tensors='pt')
             input_ids_train = encoded_data['input_ids']
             attention_masks_train = encoded_data['attention_mask']
