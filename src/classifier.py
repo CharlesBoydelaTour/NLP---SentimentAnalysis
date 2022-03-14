@@ -105,7 +105,7 @@ class Classifier:
                     labels = labels.flatten()
                     accuracy = (preds == labels).cpu().numpy().mean() * 100
                     eval_accs.append(accuracy)
-            print("Epoch {} | Train Loss {:.5f} - - Eval Loss {:.5f} - - Eval Acc {:.2f}".format(epoch, np.mean(self.train_losses), np.mean(eval_losses), np.mean(eval_accs)))
+            #print("Epoch {} | Train Loss {:.5f} - - Eval Loss {:.5f} - - Eval Acc {:.2f}".format(epoch, np.mean(self.train_losses), np.mean(eval_losses), np.mean(eval_accs)))
             
     def predict(self, datafile):
         test_dataset = self.data_loading_fn(datafile)
