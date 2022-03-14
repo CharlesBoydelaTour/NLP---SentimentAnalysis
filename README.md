@@ -39,7 +39,7 @@ The polarity labels are: **positive**, **negative** and **neutral.**
 
 Our implementation is based on the pre-trained language models [BERT](https://arxiv.org/abs/1810.04805), developed by Google in 2018. We use this model from [Hugging Face](https://huggingface.co/bert-base-uncased) 🤗. BERT is a language representation model based on transformers.
 
-The model learned an inner representation of the English language that can then be used to extract features useful for downstream tasks a standard classifier using the features produced by the BERT model as inputs.
+The model learned an inner representation of the English language. A standard classifier uses the features produced by the BERT model as inputs to learn the labels.
 
 ![](image/README/1647256956025.png)
 
