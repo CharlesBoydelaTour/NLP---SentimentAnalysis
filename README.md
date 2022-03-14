@@ -10,11 +10,13 @@
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
+</div>
+
 Charles Boy de la Tour - Gabriel Drai - Zakariae El Asri
 
 ---
 
-<p align="center"> The goal of this exercise is to implement a classifier to predict aspect-based polarities of opinions in
+<p align="left"> The goal of this exercise is to implement a classifier to predict aspect-based polarities of opinions in
 sentences.
 
 </p>
@@ -43,7 +45,7 @@ The classifier assigns a polarity label to every triple:
 
 The polarity labels are: **positive**, **negative** and **neutral.**
 
-![](image/README/1647253512618.png)
+![image](image/README/1647253512618.png)
 
 ## Implementation
 
@@ -51,7 +53,7 @@ Our implementation is based on the pre-trained language models [BERT](https://ar
 
 ### Data Processing
 
-What things you need to install the software and how to install them.
+The input to our model is the concatenation of the aspect_category, the aspect_term and the sentence separated by the "SEP" token
 
 ```
 Give examples
